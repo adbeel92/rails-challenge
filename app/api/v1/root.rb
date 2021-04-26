@@ -26,7 +26,7 @@ module V1
     rescue_from Pundit::NotAuthorizedError do |e|
       forbidden!(e.message)
     end
-    rescue_from :all do |e|
+    rescue_from :all do |_e|
       internal_server_error!
     end
 

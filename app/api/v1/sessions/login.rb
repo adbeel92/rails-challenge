@@ -7,7 +7,7 @@ module V1
 
       desc 'Logs a user in by providing a JWT containing information about the user'
       params do
-        requires :email, regexp: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+        requires :email, regexp: Regexp::EMAIL
         requires :password, type: String
       end
 

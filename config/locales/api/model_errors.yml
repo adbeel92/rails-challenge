@@ -1,0 +1,4 @@
+en:
+  api:
+    model_errors:
+      user_not_found: User not found

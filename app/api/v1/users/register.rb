@@ -8,7 +8,7 @@ module V1
       params do
         requires :first_name, type: String
         requires :last_name, type: String
-        requires :email, regexp: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+        requires :email, regexp: Regexp::EMAIL
         requires :password, type: String
       end
 

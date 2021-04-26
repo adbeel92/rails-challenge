@@ -17,13 +17,13 @@ ActiveRecord::Schema.define(version: 2021_04_24_041410) do
   enable_extension "uuid-ossp"
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "email", null: false
+    t.string "password", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.uuid "uuid", default: -> { "uuid_generate_v4()" }, null: false
     t.index ["uuid"], name: "index_users_on_uuid"
   end
 

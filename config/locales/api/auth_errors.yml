@@ -1,0 +1,7 @@
+en:
+  api:
+    auth_errors:
+      token_not_found: Authorization token was not found
+      token_expired: Authorization token has expired
+      invalid_issuer: Authentication token is invalid. Request a new one to continue.
+      invalid_token_structure: Authentication token is invalid. Request a new one to continue.

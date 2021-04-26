@@ -1,0 +1,8 @@
+en:
+  api:
+    errors:
+      unauthorized: Unauthenticated
+      not_found: Not found
+      bad_request: Your request could not be processed
+      internal_server_error: Your request could not be processed
+      forbidden: You don't have permission to access

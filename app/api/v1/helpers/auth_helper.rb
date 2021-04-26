@@ -8,7 +8,7 @@ module V1
 
         @current_user ||= User.find_by!(uuid: decoded_token['sub'])
       rescue ActiveRecord::RecordNotFound
-        unauthorized!(I18n.t('errors.user_not_found'))
+        unauthorized!(I18n.t('api.model_errors.user_not_found'))
       end
 
       def authenticated?

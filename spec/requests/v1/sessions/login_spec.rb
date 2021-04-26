@@ -22,7 +22,7 @@ describe 'POST /sessions', type: :request do
         post '/api/v1/sessions', params: { email: 'email', password: 'password' }
 
         expect(response).to have_http_status(:bad_request)
-        expect(response_message).to be 'email is invalid'
+        expect(response_message).equal? 'email is invalid'
       end
     end
   end

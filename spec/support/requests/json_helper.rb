@@ -1,9 +1,9 @@
-# spec/support/requests/json_helpers.rb
+# frozen_string_literal: true
 
 module Requests
   module JsonHelpers
     def json_response
-      @hash ||= JSON.parse(response.body)
+      @json_response ||= JSON.parse(response.body)
     end
 
     def response_message

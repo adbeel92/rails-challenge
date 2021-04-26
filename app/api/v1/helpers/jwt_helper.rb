@@ -18,26 +18,15 @@ module V1
       end
 
       def decode_auth_token
-        unauthorized!(I18n.t('errors.token_not_found')) if headers[AUTHORIZATION_HEADER].blank?
+        unauthorized!(I18n.t('api.auth_errors.token_not_found')) if headers[AUTHORIZATION_HEADER].blank?
 
-        decoded_token = JWT.decode(
-          headers[AUTHORIZATION_HEADER].split.last,
-          JWT_HMAC_SECRET,
-          true,
-          {
-            algorithm: JWT_ALGORITHM,
-            iss: iss_value,
-            verify_iss: true
-          }
-        )
-
-        decoded_token.first
+        decoded_token
       rescue JWT::ExpiredSignature
-        unauthorized!(I18n.t('errors.token_expired'))
+        unauthorized!(I18n.t('api.auth_errors.token_expired'))
       rescue JWT::InvalidIssuerError
-        unauthorized!(I18n.t('errors.invalid_issuer'))
-      rescue JWT::DecodeError => e
-        unauthorized!(I18n.t('errors.invalid_token_structure'))
+        unauthorized!(I18n.t('api.auth_errors.invalid_issuer'))
+      rescue JWT::DecodeError => _e
+        unauthorized!(I18n.t('api.auth_errors.invalid_token_structure'))
       end
 
       private
@@ -46,11 +35,24 @@ module V1
         current_time = Time.current.to_i
 
         {
-          'iss': iss_value,
-          'iat': current_time,
-          'exp': current_time + 48.hours,
-          'sub': user_uuid
+          iss: iss_value,
+          iat: current_time,
+          exp: current_time + 48.hours,
+          sub: user_uuid
         }
+      end
+
+      def decoded_token
+        JWT.decode(
+          headers[AUTHORIZATION_HEADER].split.last,
+          JWT_HMAC_SECRET,
+          true,
+          {
+            algorithm: JWT_ALGORITHM,
+            iss: iss_value,
+            verify_iss: true
+          }
+        ).first
       end
 
       def iss_value

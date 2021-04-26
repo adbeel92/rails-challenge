@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -28,21 +30,19 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Framework for creating REST-like APIs in Ruby
 gem 'grape', '~> 1.5.3'
 gem 'grape-entity', '~> 0.9.0'
-gem 'pundit', '~> 2.1.0'
 gem 'jwt', '~> 2.2.3'
+gem 'pundit', '~> 2.1.0'
 
 group :development, :test do
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 6.1.0'
   gem 'rspec-rails', '~> 5.0.1'
-  gem 'dotenv-rails', '~> 2.7.6'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'shoulda-matchers', '~> 4.5.1'
 end
 
 group :development do
-  gem 'rubocop', '~> 1.13.0'
   gem 'listen', '~> 3.3'
+  gem 'rubocop', '~> 1.13.0'
   gem 'spring'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :api do
   desc 'API Routes'
   task routes: :environment do

@@ -1,0 +1,19 @@
+AllCops:
+  DefaultFormatter: fuubar
+  NewCops: enable
+  TargetRubyVersion: 2.7.3
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+  SuggestExtensions: false
+
+inherit_mode:
+  merge:
+    - Exclude
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Style/Documentation:
+  Enabled: false
