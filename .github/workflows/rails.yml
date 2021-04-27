@@ -11,8 +11,8 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_USER: kredi_rails_challenge
-          POSTGRES_DB: kredi_rails_challenge_test
+          POSTGRES_USER: rails_challenge
+          POSTGRES_DB: rails_challenge_test
           POSTGRES_PASSWORD: postgres
         ports: ["5432:5432"]
         options: >-
@@ -41,8 +41,8 @@ jobs:
         env:
           RAILS_ENV: test
           PGHOST: localhost
-          POSTGRES_DB: kredi_rails_challenge_test
-          POSTGRES_USER: kredi_rails_challenge
+          POSTGRES_DB: rails_challenge_test
+          POSTGRES_USER: rails_challenge
           POSTGRES_PASSWORD: postgres
         run: |
           cp config/database.ci.yml config/database.yml
@@ -50,8 +50,8 @@ jobs:
       - name: Run tests
         env:
           PGHOST: localhost
-          POSTGRES_DB: kredi_rails_challenge_test
-          POSTGRES_USER: kredi_rails_challenge
+          POSTGRES_DB: rails_challenge_test
+          POSTGRES_USER: rails_challenge
           POSTGRES_PASSWORD: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
           RAILS_ENV: test

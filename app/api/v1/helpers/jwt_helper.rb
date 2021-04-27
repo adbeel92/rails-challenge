@@ -56,7 +56,7 @@ module V1
       end
 
       def iss_value
-        "KrediChallenge-#{ENV['RAILS_ENV']}"
+        "RailsChallenge-#{ENV['RAILS_ENV']}"
       end
     end
   end
