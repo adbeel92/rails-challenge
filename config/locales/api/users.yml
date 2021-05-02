@@ -1,0 +1,6 @@
+en:
+  api:
+    users:
+      errors:
+        email_in_use: The email you have provided is already associated with another account
+        invalid_information: Please fill the required information before continuing

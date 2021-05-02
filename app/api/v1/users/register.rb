@@ -13,8 +13,26 @@ module V1
       end
 
       post do
-        # TODO
-        true
+        creator = ::Users::Operations::Create.new(dparams)
+        if creator.run
+          create_auth_token(creator.user.uuid)
+          :🎉
+        else
+          error!(
+            {
+              message: I18n.t('api.users.errors.invalid_information'),
+              details: creator.user.errors.full_messages
+            },
+            response_code(:unprocessable_entity)
+          )
+        end
+      rescue ::Users::Operations::EmailAlreadyInUseError
+        error!(
+          {
+            message: I18n.t('api.users.errors.email_in_use')
+          },
+          response_code(:bad_request)
+        )
       end
     end
   end

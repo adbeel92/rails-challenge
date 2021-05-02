@@ -12,8 +12,18 @@ module V1
       end
 
       post do
-        # TODO
-        true
+        authenticator = ::Users::Operations::Authenticate.new(email: dparams[:email], password: dparams[:password])
+        authenticator.run
+
+        create_auth_token(authenticator.user.uuid)
+        :🎉
+      rescue ::Users::Operations::InvalidEmailOrPasswordError
+        error!(
+          {
+            message: I18n.t('api.sessions.errors.login_failed')
+          },
+          response_code(:bad_request)
+        )
       end
     end
   end
