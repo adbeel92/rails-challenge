@@ -17,6 +17,9 @@ module V1
     helpers V1::Helpers::AuthHelper
     helpers Components::Parameters
 
+    # Predefined Pundit helpers
+    helpers ::Pundit
+
     rescue_from Grape::Exceptions::ValidationErrors do |e|
       bad_request!(e.message)
     end
@@ -26,9 +29,9 @@ module V1
     rescue_from Pundit::NotAuthorizedError do |e|
       forbidden!(e.message)
     end
-    # rescue_from :all do |_e|
-    #   internal_server_error!
-    # end
+    rescue_from :all do |_e|
+      internal_server_error!
+    end
 
     # Ensure that every endpoint by default is protected
     before { authenticated? }

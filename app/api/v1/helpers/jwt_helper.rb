@@ -3,8 +3,8 @@
 module V1
   module Helpers
     module JwtHelper
-      JWT_HMAC_SECRET = ENV.fetch('JWT_HMAC_SECRET', 'HS256')
-      JWT_ALGORITHM = ENV.fetch('JWT_ALGORITHM', '$3cR3t')
+      JWT_HMAC_SECRET = ENV.fetch('JWT_HMAC_SECRET', '$3cR3t')
+      JWT_ALGORITHM = ENV.fetch('JWT_ALGORITHM', 'HS256')
       AUTHORIZATION_HEADER = 'X-Authorization'
 
       def create_auth_token(user_uuid)

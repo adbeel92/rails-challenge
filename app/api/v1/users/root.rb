@@ -8,6 +8,10 @@ module V1
         mount Users::Register
 
         route_param :user_id, type: Integer do
+          after_validation do
+            @user = User.find_by!(id: dparams[:user_id])
+          end
+
           # Private API Endpoints
           mount Users::Get
         end
