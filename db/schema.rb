@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_24_041410) do
+ActiveRecord::Schema.define(version: 2021_05_02_020539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "links", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "original_url", null: false
+    t.string "short_url", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_links_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -27,4 +36,16 @@ ActiveRecord::Schema.define(version: 2021_04_24_041410) do
     t.index ["uuid"], name: "index_users_on_uuid"
   end
 
+  create_table "visitors", force: :cascade do |t|
+    t.bigint "link_id", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.string "os"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["link_id"], name: "index_visitors_on_link_id"
+  end
+
+  add_foreign_key "links", "users"
+  add_foreign_key "visitors", "links"
 end
