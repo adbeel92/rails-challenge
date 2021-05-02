@@ -11,9 +11,11 @@ jobs:
       postgres:
         image: postgres:11
         env:
-          POSTGRES_USER: rails_challenge
           POSTGRES_DB: rails_challenge_test
+          POSTGRES_USER: rails_challenge
           POSTGRES_PASSWORD: postgres
+          JWT_ALGORITHM: HS256
+          JWT_HMAC_SECRET: $3cR3t
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
@@ -44,16 +46,20 @@ jobs:
           POSTGRES_DB: rails_challenge_test
           POSTGRES_USER: rails_challenge
           POSTGRES_PASSWORD: postgres
+          JWT_ALGORITHM: HS256
+          JWT_HMAC_SECRET: $3cR3t
         run: |
           cp config/database.ci.yml config/database.yml
           rake db:create db:migrate
       - name: Run tests
         env:
           PGHOST: localhost
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
           POSTGRES_DB: rails_challenge_test
           POSTGRES_USER: rails_challenge
           POSTGRES_PASSWORD: postgres
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          JWT_ALGORITHM: HS256
+          JWT_HMAC_SECRET: $3cR3t
           RAILS_ENV: test
         run: rspec
       - name: Upload coverage results
