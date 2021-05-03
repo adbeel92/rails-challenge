@@ -42,7 +42,7 @@ module Visitors
       end
 
       def operating_system
-        case request.user_agent.downcase
+        case request.user_agent.to_s.downcase
         when /mac/i then 'Mac'
         when /windows/i then 'Windows'
         when /linux/i then 'Linux'

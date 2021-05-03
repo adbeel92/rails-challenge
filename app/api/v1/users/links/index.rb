@@ -8,7 +8,7 @@ module V1
         get do
           authorize Link, :list?
 
-          present current_user.links, with: Entities::Link
+          present current_user.links, with: Entities::Links
         end
       end
     end
