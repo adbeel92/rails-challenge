@@ -15,6 +15,8 @@ module V1
       post do
         creator = ::Users::Operations::Create.new(dparams)
         if creator.run
+          creator.user.reload
+
           create_auth_token(creator.user.uuid)
           :🎉
         else
