@@ -12,10 +12,10 @@ module Links
           decoded_id = Base62.decode(text_encoded).to_s
           created_at = decoded_id[0..9]
 
-          Link.find_by!(
+          {
             id: decoded_id.remove(created_at),
             created_at: Time.at(created_at.to_i)
-          )
+          }
         end
       end
     end
