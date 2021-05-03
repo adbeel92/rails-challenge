@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: c6f5ce104389161c8cf89de16533e9dc3a79b54e
+  branch: master
+  specs:
+    faker (2.18.0)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -241,6 +249,7 @@ DEPENDENCIES
   byebug
   dotenv-rails (~> 2.7.6)
   factory_bot_rails (~> 6.1.0)
+  faker!
   grape (~> 1.5.3)
   grape-entity (~> 0.9.0)
   jwt (~> 2.2.3)

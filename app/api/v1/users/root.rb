@@ -14,6 +14,7 @@ module V1
 
           # Private API Endpoints
           mount Users::Get
+          mount V1::Users::Links::Root
         end
       end
     end

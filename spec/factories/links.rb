@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :link do
     user
-    original_url { 'https://google.com' }
-    short_url { 'abcdef123' }
+    original_url { Faker::Internet.url }
+    short_url { SecureRandom.uuid[0..7] }
   end
 end

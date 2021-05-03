@@ -1,0 +1,5 @@
+en:
+  api:
+    links:
+      errors:
+        invalid_information: Please fill the required link information before continuing

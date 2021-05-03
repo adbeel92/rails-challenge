@@ -5,6 +5,7 @@ module V1
     class Get < Grape::API
       get do
         authorize @user, :read?
+
         present @user, with: Entities::User
       end
     end

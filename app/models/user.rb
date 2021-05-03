@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_secure_password
-
   has_many :links
 
   validates :first_name, :last_name, presence: true
@@ -14,4 +12,6 @@ class User < ApplicationRecord
             }
   validates :password,
             length: { in: 6..32 }
+
+  has_secure_password
 end

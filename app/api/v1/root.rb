@@ -23,8 +23,8 @@ module V1
     rescue_from Grape::Exceptions::ValidationErrors do |e|
       bad_request!(e.message)
     end
-    rescue_from ActiveRecord::RecordNotFound do |e|
-      not_found!(e.message)
+    rescue_from ActiveRecord::RecordNotFound do |_e|
+      not_found!
     end
     rescue_from Pundit::NotAuthorizedError do |e|
       forbidden!(e.message)

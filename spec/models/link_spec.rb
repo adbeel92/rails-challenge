@@ -7,11 +7,20 @@ RSpec.describe Link, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:user_id) }
-    it { is_expected.to validate_presence_of(:short_url) }
     it { is_expected.to validate_presence_of(:original_url) }
+    it { is_expected.to validate_uniqueness_of(:original_url) }
+    it { is_expected.to validate_uniqueness_of(:short_url) }
     it { is_expected.to allow_value('http://google.com').for(:original_url) }
     it { is_expected.to_not allow_value('anything').for(:original_url) }
     it { is_expected.to_not allow_value('test@test').for(:original_url) }
     it { is_expected.to_not allow_value('12345').for(:original_url) }
+  end
+
+  describe '#shortened_url' do
+    subject { build_stubbed(:link) }
+
+    context do
+      it { expect(subject.shortened_url).to be }
+    end
   end
 end
