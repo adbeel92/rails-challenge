@@ -4,6 +4,8 @@ class LinkController < ApplicationController
   before_action :set_link
 
   def show
+    ::Visitors::Operations::TrackVisit.new(link: link, request: request).run
+
     redirect_to link.original_url
   end
 

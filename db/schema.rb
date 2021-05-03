@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_020539) do
     t.string "ip_address"
     t.string "user_agent"
     t.string "os"
+    t.integer "counter", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["link_id"], name: "index_visitors_on_link_id"

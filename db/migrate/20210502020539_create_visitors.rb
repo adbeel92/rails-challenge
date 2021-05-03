@@ -5,6 +5,7 @@ class CreateVisitors < ActiveRecord::Migration[6.1]
       t.string :ip_address
       t.string :user_agent
       t.string :os
+      t.integer :counter, null: false, default: 0
 
       t.timestamps
     end
